@@ -1,0 +1,602 @@
+{
+  "checkedAt": "2026-10-27T05:26:00.205Z",
+  "status": "PASS",
+  "scenarioCount": 5,
+  "verification": "Actual HTTP requests against an isolated packaged application. Authored fixture execution only; no AI API or user database used.",
+  "results": [
+    {
+      "scenario": "Brownfield",
+      "result": "PASS",
+      "runId": "bc0348e6-467f-46fd-b4e0-94c65f165a09",
+      "mode": "DEMO",
+      "observedStatus": "COMPLETED",
+      "revision": 1,
+      "provider": "AUTHORED_DEMO_FIXTURE",
+      "checks": [
+        "Current source differs from retained baseline",
+        "Validation passed nine real assertions",
+        "Separate release approval required",
+        "Release repeated nine assertions and completed"
+      ],
+      "candidateHash": "9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e",
+      "hashChainValid": true,
+      "tasks": [
+        {
+          "stage": "ANALYZE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "PLAN",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "IMPLEMENT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "TEST_SPEC",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "DOC_DRAFT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "VALIDATE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "SUMMARY",
+          "state": "SUCCEEDED",
+          "attempts": 0
+        },
+        {
+          "stage": "RELEASE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-10-27T05:25:57.302996500Z",
+          "type": "RUN_CREATED",
+          "detail": "mode=DEMO; scenario=BROWNFIELD; provider=AUTHORED_DEMO_FIXTURE"
+        },
+        {
+          "sequence": 2,
+          "at": "2026-10-27T05:25:57.310988300Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=ANALYZE; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 3,
+          "at": "2026-10-27T05:25:57.313997Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=PLAN; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 4,
+          "at": "2026-10-27T05:25:57.324627600Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=IMPLEMENT; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 5,
+          "at": "2026-10-27T05:25:57.327568Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=TEST_SPEC; independent branch"
+        },
+        {
+          "sequence": 6,
+          "at": "2026-10-27T05:25:57.329647500Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=DOC_DRAFT; independent branch"
+        },
+        {
+          "sequence": 7,
+          "at": "2026-10-27T05:25:57.369293100Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=DOC_DRAFT; independent worker completed"
+        },
+        {
+          "sequence": 8,
+          "at": "2026-10-27T05:25:57.373277200Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=TEST_SPEC; independent worker completed"
+        },
+        {
+          "sequence": 9,
+          "at": "2026-10-27T05:25:57.375294300Z",
+          "type": "APPROVAL_REQUIRED",
+          "detail": "stage=VALIDATE; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e; execution is local and NOT OS sandboxed"
+        },
+        {
+          "sequence": 10,
+          "at": "2026-10-27T05:25:57.418496300Z",
+          "type": "APPROVAL_GRANTED",
+          "detail": "execution; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e; reason=Automated verification of reviewed authored Brownfield fixture; no AI output executed."
+        },
+        {
+          "sequence": 11,
+          "at": "2026-10-27T05:25:57.420510700Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=VALIDATE; attempt=1"
+        },
+        {
+          "sequence": 12,
+          "at": "2026-10-27T05:25:58.479695400Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=VALIDATE; elapsedMillis=1051; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e"
+        },
+        {
+          "sequence": 13,
+          "at": "2026-10-27T05:25:58.483691900Z",
+          "type": "SUMMARY_READY",
+          "detail": "Review validation, diff, provider provenance, and release scope"
+        },
+        {
+          "sequence": 14,
+          "at": "2026-10-27T05:25:58.485714100Z",
+          "type": "APPROVAL_REQUIRED",
+          "detail": "stage=RELEASE; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e; execution is local and NOT OS sandboxed"
+        },
+        {
+          "sequence": 15,
+          "at": "2026-10-27T05:25:58.624510600Z",
+          "type": "APPROVAL_GRANTED",
+          "detail": "release; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e; reason=Automated verification of reviewed authored Brownfield fixture; no AI output executed."
+        },
+        {
+          "sequence": 16,
+          "at": "2026-10-27T05:25:58.630510800Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=RELEASE; attempt=1"
+        },
+        {
+          "sequence": 17,
+          "at": "2026-10-27T05:25:59.719102800Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=RELEASE; elapsedMillis=1060; hash=9c64532e18e9a850ff45074a935b087e6e5043b79f77d3cd64e68e98a637ef2e"
+        }
+      ],
+      "toolEvidence": [
+        {
+          "stage": "VALIDATE",
+          "output": "COMMAND C:\\Program Files\\Java\\jdk-17\\bin\\javac.exe -encoding UTF-8 --release 17 -d C:\\Users\\Pranav Pagare\\Code\\schwab2\\target\\final-scenario-fixed-workspaces\\bc0348e6-467f-46fd-b4e0-94c65f165a09\\revision-1\\candidate\\classes LinkStore.java CandidateTest.java Server.java\n\nEXIT 0\nCOMMAND C:\\Program Files\\Java\\jdk-17\\bin\\java.exe -Xmx128m -cp C:\\Users\\Pranav Pagare\\Code\\schwab2\\target\\final-scenario-fixed-workspaces\\bc0348e6-467f-46fd-b4e0-94c65f165a09\\revision-1\\candidate\\classes CandidateTest\nPASS: 9 candidate assertions\r\n\nEXIT 0\n"
+        },
+        {
+          "stage": "RELEASE",
+          "output": "COMMAND C:\\Program Files\\Java\\jdk-17\\bin\\javac.exe -encoding UTF-8 --release 17 -d C:\\Users\\Pranav Pagare\\Code\\schwab2\\target\\final-scenario-fixed-workspaces\\bc0348e6-467f-46fd-b4e0-94c65f165a09\\revision-1\\release\\classes LinkStore.java CandidateTest.java Server.java\n\nEXIT 0\nCOMMAND C:\\Program Files\\Java\\jdk-17\\bin\\java.exe -Xmx128m -cp C:\\Users\\Pranav Pagare\\Code\\schwab2\\target\\final-scenario-fixed-workspaces\\bc0348e6-467f-46fd-b4e0-94c65f165a09\\revision-1\\release\\classes CandidateTest\nPASS: 9 candidate assertions\r\n\nEXIT 0\n"
+        }
+      ]
+    },
+    {
+      "scenario": "Ambiguous",
+      "result": "PASS",
+      "runId": "10955460-3a88-49ba-85a6-e30b93be704d",
+      "mode": "DEMO",
+      "observedStatus": "WAITING_FOR_INPUT",
+      "revision": 1,
+      "provider": "AUTHORED_DEMO_FIXTURE",
+      "checks": [
+        "Questions block planning",
+        "Clarification recorded",
+        "Implementation waits for manual response",
+        "No canned implementation or code execution",
+        "Implementation prompt includes the clarification"
+      ],
+      "candidateHash": "",
+      "hashChainValid": true,
+      "tasks": [
+        {
+          "stage": "ANALYZE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "PLAN",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "IMPLEMENT",
+          "state": "WAITING_FOR_INPUT",
+          "attempts": 1
+        },
+        {
+          "stage": "TEST_SPEC",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "DOC_DRAFT",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "VALIDATE",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "SUMMARY",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "RELEASE",
+          "state": "PENDING",
+          "attempts": 0
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-10-27T05:25:59.796773100Z",
+          "type": "RUN_CREATED",
+          "detail": "mode=DEMO; scenario=AMBIGUOUS; provider=AUTHORED_DEMO_FIXTURE"
+        },
+        {
+          "sequence": 2,
+          "at": "2026-10-27T05:25:59.797746300Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=ANALYZE; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 3,
+          "at": "2026-10-27T05:25:59.814448500Z",
+          "type": "CLARIFICATION_RECORDED",
+          "detail": "Implement expiration first; collect no raw IP addresses. Keep analytics to UTC aggregate click counts."
+        },
+        {
+          "sequence": 4,
+          "at": "2026-10-27T05:25:59.816445300Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=PLAN; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 5,
+          "at": "2026-10-27T05:25:59.818432200Z",
+          "type": "HANDOFF_REQUIRED",
+          "detail": "Ambiguous clarification requires a real manual implementation response"
+        }
+      ],
+      "toolEvidence": []
+    },
+    {
+      "scenario": "Manual ChatGPT handoff",
+      "result": "PASS",
+      "runId": "7473d33f-23e1-4a85-9490-2836614e97bd",
+      "mode": "MANUAL",
+      "observedStatus": "WAITING_FOR_INPUT",
+      "revision": 1,
+      "provider": "MANUAL_CHATGPT_HANDOFF",
+      "checks": [
+        "ANALYZE waits for input",
+        "Exported prompt includes JSON contract and current revision",
+        "No source staged or external AI called"
+      ],
+      "candidateHash": "",
+      "hashChainValid": true,
+      "tasks": [
+        {
+          "stage": "ANALYZE",
+          "state": "WAITING_FOR_INPUT",
+          "attempts": 0
+        },
+        {
+          "stage": "PLAN",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "IMPLEMENT",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "TEST_SPEC",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "DOC_DRAFT",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "VALIDATE",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "SUMMARY",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "RELEASE",
+          "state": "PENDING",
+          "attempts": 0
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-10-27T05:25:59.873610400Z",
+          "type": "RUN_CREATED",
+          "detail": "mode=MANUAL; scenario=GREENFIELD; provider=MANUAL_CHATGPT_HANDOFF"
+        },
+        {
+          "sequence": 2,
+          "at": "2026-10-27T05:25:59.875590Z",
+          "type": "HANDOFF_REQUIRED",
+          "detail": "stage=ANALYZE"
+        }
+      ],
+      "toolEvidence": []
+    },
+    {
+      "scenario": "Reject approval",
+      "result": "PASS",
+      "runId": "acdb78e0-f865-4beb-81d8-5ca864fd8722",
+      "mode": "DEMO",
+      "observedStatus": "REJECTED",
+      "revision": 1,
+      "provider": "AUTHORED_DEMO_FIXTURE",
+      "checks": [
+        "Run becomes REJECTED",
+        "Validation attempts remain zero",
+        "No validation-start event or execution approval recorded"
+      ],
+      "candidateHash": "3754b67f2020457bac909070613840945652218503f8dc68f58fbbedb4e1ce6f",
+      "hashChainValid": true,
+      "tasks": [
+        {
+          "stage": "ANALYZE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "PLAN",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "IMPLEMENT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "TEST_SPEC",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "DOC_DRAFT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "VALIDATE",
+          "state": "WAITING_FOR_APPROVAL",
+          "attempts": 0
+        },
+        {
+          "stage": "SUMMARY",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "RELEASE",
+          "state": "PENDING",
+          "attempts": 0
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-10-27T05:25:59.920578200Z",
+          "type": "RUN_CREATED",
+          "detail": "mode=DEMO; scenario=GREENFIELD; provider=AUTHORED_DEMO_FIXTURE"
+        },
+        {
+          "sequence": 2,
+          "at": "2026-10-27T05:25:59.922592400Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=ANALYZE; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 3,
+          "at": "2026-10-27T05:25:59.923661400Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=PLAN; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 4,
+          "at": "2026-10-27T05:25:59.935645600Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=IMPLEMENT; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 5,
+          "at": "2026-10-27T05:25:59.937614900Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=TEST_SPEC; independent branch"
+        },
+        {
+          "sequence": 6,
+          "at": "2026-10-27T05:25:59.939642900Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=DOC_DRAFT; independent branch"
+        },
+        {
+          "sequence": 7,
+          "at": "2026-10-27T05:25:59.944818100Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=DOC_DRAFT; independent worker completed"
+        },
+        {
+          "sequence": 8,
+          "at": "2026-10-27T05:25:59.949824900Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=TEST_SPEC; independent worker completed"
+        },
+        {
+          "sequence": 9,
+          "at": "2026-10-27T05:25:59.952820800Z",
+          "type": "APPROVAL_REQUIRED",
+          "detail": "stage=VALIDATE; hash=3754b67f2020457bac909070613840945652218503f8dc68f58fbbedb4e1ce6f; execution is local and NOT OS sandboxed"
+        },
+        {
+          "sequence": 10,
+          "at": "2026-10-27T05:26:00.071405500Z",
+          "type": "APPROVAL_REJECTED",
+          "detail": "execution: Scenario verification: deliberately reject execution."
+        }
+      ],
+      "toolEvidence": []
+    },
+    {
+      "scenario": "Safe stop and resume",
+      "result": "PASS",
+      "runId": "e352d3b1-416d-4171-b730-81351bd1547b",
+      "mode": "DEMO",
+      "observedStatus": "WAITING_FOR_APPROVAL",
+      "revision": 1,
+      "provider": "AUTHORED_DEMO_FIXTURE",
+      "checks": [
+        "Safe stop prevents execution",
+        "Resume preserves reviewed source",
+        "Execution still has zero attempts",
+        "Renewed execution approval required"
+      ],
+      "candidateHash": "3754b67f2020457bac909070613840945652218503f8dc68f58fbbedb4e1ce6f",
+      "hashChainValid": true,
+      "tasks": [
+        {
+          "stage": "ANALYZE",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "PLAN",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "IMPLEMENT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "TEST_SPEC",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "DOC_DRAFT",
+          "state": "SUCCEEDED",
+          "attempts": 1
+        },
+        {
+          "stage": "VALIDATE",
+          "state": "WAITING_FOR_APPROVAL",
+          "attempts": 0
+        },
+        {
+          "stage": "SUMMARY",
+          "state": "PENDING",
+          "attempts": 0
+        },
+        {
+          "stage": "RELEASE",
+          "state": "PENDING",
+          "attempts": 0
+        }
+      ],
+      "events": [
+        {
+          "sequence": 1,
+          "at": "2026-10-27T05:26:00.124340700Z",
+          "type": "RUN_CREATED",
+          "detail": "mode=DEMO; scenario=GREENFIELD; provider=AUTHORED_DEMO_FIXTURE"
+        },
+        {
+          "sequence": 2,
+          "at": "2026-10-27T05:26:00.126349800Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=ANALYZE; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 3,
+          "at": "2026-10-27T05:26:00.127347Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=PLAN; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 4,
+          "at": "2026-10-27T05:26:00.136609Z",
+          "type": "DEMO_FIXTURE_STAGE",
+          "detail": "stage=IMPLEMENT; authored demonstration, no AI call"
+        },
+        {
+          "sequence": 5,
+          "at": "2026-10-27T05:26:00.137608700Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=TEST_SPEC; independent branch"
+        },
+        {
+          "sequence": 6,
+          "at": "2026-10-27T05:26:00.138608300Z",
+          "type": "TASK_STARTED",
+          "detail": "stage=DOC_DRAFT; independent branch"
+        },
+        {
+          "sequence": 7,
+          "at": "2026-10-27T05:26:00.140608100Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=DOC_DRAFT; independent worker completed"
+        },
+        {
+          "sequence": 8,
+          "at": "2026-10-27T05:26:00.142607300Z",
+          "type": "TASK_SUCCEEDED",
+          "detail": "stage=TEST_SPEC; independent worker completed"
+        },
+        {
+          "sequence": 9,
+          "at": "2026-10-27T05:26:00.143608300Z",
+          "type": "APPROVAL_REQUIRED",
+          "detail": "stage=VALIDATE; hash=3754b67f2020457bac909070613840945652218503f8dc68f58fbbedb4e1ce6f; execution is local and NOT OS sandboxed"
+        },
+        {
+          "sequence": 10,
+          "at": "2026-10-27T05:26:00.170888700Z",
+          "type": "SAFE_STOP",
+          "detail": "New actions stopped; an already running process finishes under its timeout and its result is not promoted"
+        },
+        {
+          "sequence": 11,
+          "at": "2026-10-27T05:26:00.185886200Z",
+          "type": "RESUMED",
+          "detail": "Resumed with fresh approval required for code execution"
+        },
+        {
+          "sequence": 12,
+          "at": "2026-10-27T05:26:00.187889500Z",
+          "type": "APPROVAL_REQUIRED",
+          "detail": "stage=VALIDATE; hash=3754b67f2020457bac909070613840945652218503f8dc68f58fbbedb4e1ce6f; execution is local and NOT OS sandboxed"
+        }
+      ],
+      "toolEvidence": []
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+/target/
+/data/
+/tmp/
+/.idea/
+/.m2/
+/dist/
+*.log
+.env
+.env.*
+!.env.example
+*.iml
+/out/
+.DS_Store
+Thumbs.db
+# Original local planning notes are superseded by docs/ENGINEERING_SUMMARY.md.
+/IMPLEMENTATION_PLAN.md

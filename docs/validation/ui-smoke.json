@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "checks": [
+    "overview metrics",
+    "link creation and list",
+    "analytics rendering",
+    "disable link",
+    "enable link",
+    "eight workflow tasks",
+    "approval checkbox",
+    "safe stop and resume",
+    "manual prompt export",
+    "manual analysis import"
+  ],
+  "visualReview": false,
+  "codeExecutionApproved": false
+}

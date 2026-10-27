@@ -1,0 +1,252 @@
+openapi: 3.1.0
+info:
+  title: Engineering Workbench API
+  version: 1.0.0
+  description: Local single-user URL service and manual AI workflow. No AI API is called.
+servers:
+  - url: http://127.0.0.1:8080
+paths:
+  /api/links:
+    get:
+      summary: List links
+      parameters:
+        - {name: page, in: query, schema: {type: integer, minimum: 0, default: 0}}
+        - {name: size, in: query, schema: {type: integer, minimum: 1, maximum: 100, default: 20}}
+      responses:
+        '200': {description: Paginated items with page, size and total}
+    post:
+      summary: Create a short link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [destination]
+              properties:
+                destination: {type: string, format: uri, maxLength: 4096}
+                alias: {type: string, pattern: '^[A-Za-z0-9_-]{3,64}$'}
+                expiresAt: {type: string, format: date-time}
+      responses:
+        '201': {description: Created link, content: {application/json: {schema: {$ref: '#/components/schemas/Link'}}}}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '409': {description: Alias conflict}
+  /api/links/{id}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Get link metadata
+      responses:
+        '200': {description: Link, content: {application/json: {schema: {$ref: '#/components/schemas/Link'}}}}
+        '404': {description: Missing link}
+    patch:
+      summary: Enable, disable or change expiration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                active: {type: boolean}
+                expiresAt: {type: string, format: date-time}
+                clearExpiration: {type: boolean}
+      responses:
+        '200': {description: Updated link}
+        '400': {$ref: '#/components/responses/Invalid'}
+  /api/links/{id}/analytics:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Total clicks and UTC daily aggregates
+      responses:
+        '200': {description: linkId, timezone, totalClicks and daily date/clicks entries}
+  /s/{code}:
+    get:
+      summary: Redirect and record a click
+      parameters:
+        - {name: code, in: path, required: true, schema: {type: string}}
+      responses:
+        '302': {description: Target in Location header; Cache-Control no-store}
+        '404': {description: Unknown code}
+        '410': {description: Expired or disabled}
+        '503': {description: Storage unavailable}
+  /api/runs:
+    get:
+      summary: List workflow summaries
+      responses:
+        '200': {description: Run summaries}
+    post:
+      summary: Create a manual or authored demonstration run
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [requirement]
+              properties:
+                requirement: {type: string, minLength: 1, maxLength: 10000}
+                mode: {type: string, enum: [MANUAL, DEMO], default: MANUAL}
+                scenario: {type: string, enum: [GREENFIELD, BROWNFIELD, AMBIGUOUS], default: GREENFIELD}
+      responses:
+        '201': {description: Complete run state}
+        '429': {description: Local run limit reached}
+  /api/runs/{id}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Get run, task graph, source and approvals
+      responses:
+        '200': {description: Current run snapshot}
+        '404': {description: Missing run}
+  /api/runs/{id}/prompt/{stage}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+      - {name: stage, in: path, required: true, schema: {type: string, enum: [ANALYZE, PLAN, IMPLEMENT]}}
+    get:
+      summary: Export manual ChatGPT prompt and revision/version binding
+      responses:
+        '200': {description: stage, revision, version and prompt}
+  /api/runs/{id}/handoff:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    post:
+      summary: Import a human-reviewed structured AI response
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [stage, revision, version, response]
+              properties:
+                stage: {type: string, enum: [ANALYZE, PLAN, IMPLEMENT]}
+                revision: {type: integer}
+                version: {type: integer, format: int64}
+                response: {type: string, description: JSON string following the exported stage contract}
+      responses:
+        '200': {description: Updated run}
+        '400': {$ref: '#/components/responses/Invalid'}
+        '409': {description: Stale binding or invalid state}
+  /api/runs/{id}/approvals/{kind}:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+      - {name: kind, in: path, required: true, schema: {type: string, enum: [execution, release]}}
+    post:
+      summary: Approve or reject an exact candidate revision and source hash
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [revision, hash, approve, reason]
+              properties:
+                revision: {type: integer}
+                hash: {type: string, pattern: '^[a-f0-9]{64}$'}
+                approve: {type: boolean}
+                reason: {type: string, minLength: 1, maxLength: 2000}
+      responses:
+        '200': {description: Updated run}
+        '409': {description: Stale approval, changed files or invalid state}
+  /api/runs/{id}/clarification:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    post:
+      summary: Resolve pending requirement questions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {type: object, required: [answer], properties: {answer: {type: string, minLength: 1, maxLength: 10000}}}
+      responses:
+        '200': {description: Updated run}
+        '409': {description: Not waiting for clarification}
+  /api/runs/{id}/revision:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    post:
+      summary: Archive current revision and re-plan the root requirement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {type: object, required: [requirement], properties: {requirement: {type: string, minLength: 1, maxLength: 10000}}}
+      responses:
+        '200': {description: New revision with approvals cleared}
+        '409': {description: A tool is running}
+  /api/runs/{id}/stop:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    post:
+      summary: Stop scheduling and prevent promotion
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      responses:
+        '200': {description: Stopped run; existing tool result awaits bounded completion}
+  /api/runs/{id}/resume:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    post:
+      summary: Resume a stopped run with renewed execution approval
+      requestBody:
+        content:
+          application/json:
+            schema: {type: object}
+      responses:
+        '200': {description: Resumed run}
+        '409': {description: Not stopped or tool still running}
+  /api/runs/{id}/events:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Inspect ordered hash-chained audit events
+      responses:
+        '200': {description: events, hashChainValid and trust-boundary note}
+  /api/runs/{id}/revisions:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Inspect archived requirement revisions
+      responses:
+        '200': {description: Archived revision snapshots}
+  /api/runs/{id}/export:
+    parameters:
+      - {$ref: '#/components/parameters/Id'}
+    get:
+      summary: Export run, audit events, archived revisions and integrity result
+      responses:
+        '200': {description: Evidence bundle}
+  /api/health:
+    get:
+      summary: Database readiness
+      responses:
+        '200': {description: UP and local/manual mode information}
+        '503': {description: Storage unavailable}
+  /api/metrics:
+    get:
+      summary: Observed workflow reliability counters with definitions
+      responses:
+        '200': {description: Metrics including sample count, terminal success fraction and latency}
+components:
+  parameters:
+    Id: {name: id, in: path, required: true, schema: {type: string, format: uuid}}
+  responses:
+    Invalid:
+      description: Invalid input
+      content:
+        application/json:
+          schema: {type: object, properties: {error: {type: string}}}
+  schemas:
+    Link:
+      type: object
+      properties:
+        id: {type: string, format: uuid}
+        code: {type: string}
+        destination: {type: string, format: uri}
+        createdAt: {type: string, format: date-time}
+        expiresAt: {type: [string, 'null'], format: date-time}
+        active: {type: boolean}

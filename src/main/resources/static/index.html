@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Engineering Workbench</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+ <a class="brand" href="#overview"><span class="mark">ew</span><span>Engineering<br><strong>Workbench</strong></span></a>
+ <div class="nav-caption">WORKSPACE</div>
+ <nav><button data-view="overview" class="nav active"><span>◈</span> Overview</button><button data-view="links" class="nav"><span>↗</span> URL shortener</button><button data-view="workflows" class="nav"><span>⊞</span> SDLC workflows</button><button data-view="guide" class="nav"><span>≡</span> Review guide</button></nav>
+ <div class="sidebar-foot"><span class="status-dot"></span> Local environment<div id="health">Connecting…</div><small>Single user · Java 17+</small></div>
+</aside>
+<main>
+ <header class="topbar"><span id="breadcrumb">Workspace / Overview</span><div><span class="badge neutral">NO API KEY REQUIRED</span><span class="avatar">PP</span></div></header>
+ <div id="toast" role="status" hidden></div>
+ <section id="view-overview" class="view">
+  <div class="eyebrow">REQUIREMENT TO REVIEWABLE CHANGE</div><h1>Engineering, with evidence.</h1><p class="lead">A working URL service and a governed delivery workflow.<br>Inspect every decision, approval, and validation result.</p>
+  <div class="hero-actions"><button class="primary" data-open="workflows">Start a workflow <span>↗</span></button><button class="secondary" data-open="links">Create a short URL</button></div>
+  <div class="metrics" id="metrics"></div>
+  <div class="overview-grid"><article class="card"><div class="eyebrow">01 / APPLICATION</div><h2>Small links. Real behavior.</h2><p>Create aliases, set expiration, and inspect daily click counts. Database constraints protect uniqueness.</p><div class="mini-url"><span>https://example.com/a-long-destination</span><strong>localhost / s / your-link</strong></div><button class="text-button" data-open="links">Open URL shortener ↗</button></article>
+  <article class="card dark"><div class="eyebrow">02 / ORCHESTRATION</div><h2>Control at every gate.</h2><p>Persisted tasks, independent branches, bounded repair, and approval tied to the exact artifact.</p><div class="pipeline"><span>Understand</span><i>→</i><span>Build</span><i>→</i><span>Validate</span><i>→</i><span>Review</span></div><button class="text-button" data-open="workflows">Explore workflows ↗</button></article></div>
+  <div class="notice"><strong>Transparent AI boundaries</strong><p>Manual mode exports prompts for ChatGPT and imports your reviewed JSON response. Demo mode uses authored fixtures. Neither mode calls an AI API.</p></div>
+ </section>
+ <section id="view-links" class="view" hidden>
+  <div class="eyebrow">APPLICATION</div><h1>URL shortener</h1><p class="lead">Create a link, follow its redirect, and see the click appear.</p>
+  <div class="split"><article class="card"><h2>Create a short link</h2><form id="link-form"><label>Destination URL<input name="destination" type="url" placeholder="https://example.com/your-page" required maxlength="4096"></label><label>Custom alias <small>optional</small><input name="alias" placeholder="my-link" pattern="[A-Za-z0-9_-]{3,64}"></label><label>Expiration <small>optional · your local time</small><input name="expires" type="datetime-local"></label><button class="primary" type="submit">Create link ↗</button></form><div id="created-link" class="notice" hidden></div></article><article class="card"><div class="row"><h2>Click analytics</h2><span class="badge neutral">UTC</span></div><div id="analytics" class="empty">Choose “Analytics” on a link below.</div></article></div>
+  <article class="card table-card"><div class="row"><h2>Your links</h2><button class="secondary" id="refresh-links">Refresh</button></div><div class="table-wrap"><table><thead><tr><th>Short link / destination</th><th>State</th><th>Expires</th><th>Actions</th></tr></thead><tbody id="link-rows"></tbody></table></div><div class="row pagination"><button class="secondary" id="links-prev">Previous</button><span id="links-page"></span><button class="secondary" id="links-next">Next</button></div></article>
+ </section>
+ <section id="view-workflows" class="view" hidden>
+  <div class="row"><div><div class="eyebrow">GOVERNED EXECUTION</div><h1>SDLC workflows</h1></div><button class="primary" id="new-run-button">+ New workflow</button></div><p class="lead">From requirement to a locally validated release candidate.</p>
+  <article class="card" id="new-run-panel"><h2>Start with a requirement</h2><form id="run-form"><div class="form-grid"><label>Execution mode<select name="mode"><option value="DEMO">Authored demonstration · no AI calls</option><option value="MANUAL">Manual ChatGPT handoff · no AI calls</option></select></label><label>Scenario<select name="scenario" id="scenario"><option value="GREENFIELD">Greenfield · basic URL service</option><option value="BROWNFIELD">Brownfield · add expiration</option><option value="AMBIGUOUS">Ambiguous · clarify first</option></select></label></div><label>Requirement<textarea name="requirement" id="requirement" rows="3" required maxlength="10000">Build a local URL shortener with create, redirect, unique aliases, URL validation, and click counts.</textarea></label><button class="primary">Create workflow</button></form></article>
+  <div class="workflow-layout"><article class="card run-list"><h2>Runs</h2><div id="run-list"></div></article><div id="run-detail"><article class="card empty">Create or select a workflow to inspect its graph and evidence.</article></div></div>
+ </section>
+ <section id="view-guide" class="view" hidden><div class="eyebrow">REVIEWER WALKTHROUGH</div><h1>A clear path through the project.</h1><p class="lead">Everything runs locally. No AI API key is needed.</p><div class="guide-grid">
+  <article class="card"><span class="step">01</span><h2>Try the application</h2><p>Create a short URL, open it in a new tab, then view analytics. Try a duplicate alias, an expired link, or a disabled link.</p></article>
+  <article class="card"><span class="step">02</span><h2>Run an authored demo</h2><p>Select Greenfield or Brownfield in demonstration mode. Inspect the staged Java files and baseline changes. Review and explicitly approve local code execution.</p></article>
+  <article class="card"><span class="step">03</span><h2>Review real validation</h2><p>The tool runs javac and CandidateTest in a candidate workspace. Compilation errors and assertion failures are real. Two repair opportunities precede a safe stop.</p></article>
+  <article class="card"><span class="step">04</span><h2>Use ChatGPT manually</h2><p>Create a manual run. Copy each prompt to ChatGPT. Import JSON for analysis, planning, and implementation. Resolve questions through the clarification field.</p></article>
+  <article class="card"><span class="step">05</span><h2>Inspect governance</h2><p>Stop and resume a run, reject an approval, or revise the requirement. Each approval covers a specific revision and SHA-256 hash. Old revisions remain available in the evidence export.</p></article>
+  <article class="card"><span class="step">06</span><h2>Know the boundaries</h2><p>Generated code executes with your local OS permissions after review. It is not OS sandboxed. Candidate releases are local file artifacts, not a production deployment. Hash chains are not externally anchored.</p></article>
+ </div><div class="notice"><strong>Submission scope</strong><p>Java / Spring Boot · persistent H2 storage · optional PostgreSQL profile · manual AI handoff · JDK-only candidate service · no cloud account required. See README and docs for setup, architecture, tests, and limitations.</p></div></section>
+ <footer>Engineering Workbench <span>Built by Pranav Pagare · Local prototype</span></footer>
+</main>
+</body></html>
