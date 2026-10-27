@@ -12,7 +12,7 @@ New-Item -ItemType Directory -Force -Path $bundleRoot,(Join-Path $bundleRoot 'ap
 foreach ($bundleDirectory in @('src','docs','scripts')) {
     Copy-Item -LiteralPath (Join-Path $projectRoot $bundleDirectory) -Destination $bundleRoot -Recurse -Force
 }
-foreach ($bundleName in @('start.md','START_HERE.md','README.md','pom.xml','Dockerfile','compose.yaml','.gitignore','.dockerignore')) {
+foreach ($bundleName in @('start.md','README.md','pom.xml','Dockerfile','compose.yaml','.gitignore','.dockerignore')) {
     Copy-Item -LiteralPath (Join-Path $projectRoot $bundleName) -Destination $bundleRoot -Force
 }
 Copy-Item -LiteralPath $bundleJar -Destination (Join-Path $bundleRoot 'app\engineering-workbench-1.0.0.jar')
